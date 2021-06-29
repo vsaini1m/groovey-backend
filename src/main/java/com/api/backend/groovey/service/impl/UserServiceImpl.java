@@ -1,5 +1,6 @@
 package com.api.backend.groovey.service.impl;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.api.backend.groovey.entity.user.User;
@@ -15,8 +16,12 @@ public class UserServiceImpl implements UserService {
 	
 	private final UserRepositery userRepositery;
 	
+	private final BCryptPasswordEncoder passwordEncoder;
+	
 	@Override
 	public User addUser(User user) {
+		
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		
 		
 		return userRepositery.save(user);

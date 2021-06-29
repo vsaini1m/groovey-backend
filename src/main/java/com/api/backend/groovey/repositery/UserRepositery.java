@@ -7,4 +7,6 @@ import com.api.backend.groovey.entity.user.User;
 @Repository
 public interface UserRepositery extends JpaRepository<User, Long>{
 
+	User findByUsername(String username);
+
 }
